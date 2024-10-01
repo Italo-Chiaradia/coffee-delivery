@@ -65,8 +65,14 @@ export const ProductsContainer = styled.div`
     font-size: 2rem;
     color: ${({ theme }) => theme['base-subtitle']};
     margin-bottom: 3.4rem;
-
   }
-
+  > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,  16rem);
+    justify-content: center;
+    column-gap: 2rem;
+    row-gap: 2.5rem;
+    /* justify-content: space-between; */
+  }
   
 `

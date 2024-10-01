@@ -45,7 +45,25 @@ export function Home() {
         </HeroContainer>
         <ProductsContainer>
           <h2>Nossos cafés</h2>
-          <Card />
+          <div>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+
+            <Card />
+            <Card />
+          </div>
         </ProductsContainer>
       </HomeContainer>
     </>
