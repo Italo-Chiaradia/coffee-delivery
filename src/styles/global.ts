@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme['base-text']}
   }
 
-  body, input, button, textarea {
+  body, input, button, textarea, select {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     line-height: 1.3;
