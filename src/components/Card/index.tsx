@@ -31,7 +31,7 @@ export function Card() {
         </TotalPrice>
         <CoffeeAmount>
           <Counter />
-          <button>
+          <button title="Adicionar pedido">
             <ShoppingCart size={22} weight="fill" />
           </button>
         </CoffeeAmount>

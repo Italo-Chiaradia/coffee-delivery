@@ -36,7 +36,7 @@ export const OrderConfirmationWrapper = styled(Wrapper)`
   width: 28rem;
   > div {
     border-radius: 6px 44px 6px 44px;
-    > button {
+    > a > button {
       width: 100%;
       background-color: ${({ theme }) => theme.yellow};
       border-radius: 6px;

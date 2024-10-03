@@ -41,4 +41,8 @@ export const CartBtn = styled.a`
   color: ${({ theme }) => theme['yellow-dark']};
 
   cursor: pointer;
+  transition: all .1s;
+  &:hover {
+    transform: scale(1.1);
+  }
 `
