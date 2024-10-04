@@ -1,11 +1,11 @@
 import Coffee from '../../assets/coffee.png'
 import { Trash } from 'phosphor-react'
 import { Counter } from '../Counter'
-import { CheckoutCardContainer, TitleButtonsContainer } from './styles'
+import { CartCardContainer, TitleButtonsContainer } from './styles'
 
 export function CheckoutCard() {
   return (
-    <CheckoutCardContainer>
+    <CartCardContainer>
       <div>
         <img src={Coffee} alt="Xícara de café preto" />
         <TitleButtonsContainer>
@@ -23,6 +23,6 @@ export function CheckoutCard() {
       <strong>
         R$ 19,80
       </strong>
-    </CheckoutCardContainer>
+    </CartCardContainer>
   )
 }

@@ -8,26 +8,53 @@ import Coffee from '../../assets/coffee.png'
 import { ShoppingCart } from 'phosphor-react'
 import { Counter } from '../Counter'
 
-export function Card() {
+interface Props {
+  coffee: {
+    id: string,
+    title: string,
+    description: string,
+    tags: string[],
+    price: number
+  }
+}
+
+export function Card({ coffee }: Props) {
   return (
     <CardContainer>
-      <img src={Coffee} alt="Xícara de café preto" />
+      <img src={Coffee} alt={coffee.title} />
 
       <TagsContainer>
-        <span>tradicional</span>
+        {
+          coffee.tags.map(name => {
+            return (
+              <span key={name}>
+                {name}
+              </span>
+            )
+          })
+        }
       </TagsContainer>
 
       <h3>
-        Expresso Tradicional
+        {coffee.title}
       </h3>
       <p>
-        O tradicional café feito com água quente e grãos moídos
+        {coffee.description}
       </p>
 
       <footer>
         <TotalPrice>
-          R$
-          <span> 9,90</span>
+          R${' '}
+          <span>
+            {
+              coffee
+                .price
+                .toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+            }
+          </span>
         </TotalPrice>
         <CoffeeAmount>
           <Counter />

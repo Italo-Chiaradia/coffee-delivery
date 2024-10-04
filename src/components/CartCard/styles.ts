@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CheckoutCardContainer = styled.div`
+export const CartCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

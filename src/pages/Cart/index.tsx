@@ -1,8 +1,8 @@
 /* eslint-disable @stylistic/max-len */
 import React, { useState } from 'react'
-import { CheckoutCard } from '../../components/CheckoutCard'
+import { CheckoutCard } from '../../components/CartCard'
 import {
-  CheckoutContainer,
+  CartContainer,
   OrderDetailsWrapper,
   OrderConfirmationWrapper,
   AddressInputGroup,
@@ -14,7 +14,7 @@ import {
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 
-export function Checkout() {
+export function Cart() {
   const [selectedUF, setSelectedUF] = useState('')
   const ufs = [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS',
@@ -25,7 +25,7 @@ export function Checkout() {
     setSelectedUF(event.target.value)
   }
   return (
-    <CheckoutContainer>
+    <CartContainer>
       <OrderDetailsWrapper>
         <h2>Complete seu pedido</h2>
         <AddressInputGroup>
@@ -150,6 +150,6 @@ export function Checkout() {
           </NavLink>
         </div>
       </OrderConfirmationWrapper>
-    </CheckoutContainer>
+    </CartContainer>
   )
 }

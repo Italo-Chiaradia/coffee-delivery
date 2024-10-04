@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CheckoutContainer = styled.div`
+export const CartContainer = styled.div`
   padding-inline: 10rem;
   display: flex;
   align-items: start;

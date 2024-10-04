@@ -3,6 +3,8 @@ import { HomeContainer, HeroContainer, ProductsContainer, Features, FeatureItem 
 import HeroImg from '../../assets/intro-coffee-img.png'
 import { ShoppingCart, Package, Coffee, Timer } from 'phosphor-react'
 import { Card } from '../../components/Card/index.tsx'
+import { coffees } from '../../../data.json'
+
 export function Home() {
   return (
     <HomeContainer>
@@ -42,23 +44,13 @@ export function Home() {
       <ProductsContainer>
         <h2>Nossos cafés</h2>
         <div>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-
-          <Card />
-          <Card />
+          {
+            coffees.map((coffee) => {
+              return (
+                <Card key={coffee.id} coffee={coffee} />
+              )
+            })
+          }
         </div>
       </ProductsContainer>
     </HomeContainer>
