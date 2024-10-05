@@ -9,7 +9,8 @@ export const CartContainer = styled.div`
   margin-bottom: 91px;
 `
 
-export const Wrapper = styled.div`
+export const OrderDetailsWrapper = styled.form`
+  width: 40rem;
   > h2 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 1.125rem;
@@ -24,19 +25,13 @@ export const Wrapper = styled.div`
   > div + div {
     margin-top: .75rem;
   }
-
 `
 
-export const OrderDetailsWrapper = styled(Wrapper)`
-  width: 40rem;
-
-`
-
-export const OrderConfirmationWrapper = styled(Wrapper)`
+export const OrderConfirmationWrapper = styled.div`
   width: 28rem;
   > div {
     border-radius: 6px 44px 6px 44px;
-    > a > button {
+    > button {
       width: 100%;
       background-color: ${({ theme }) => theme.yellow};
       border-radius: 6px;
@@ -51,12 +46,29 @@ export const OrderConfirmationWrapper = styled(Wrapper)`
       &:hover {
         background-color: ${({ theme }) => theme['yellow-dark']};
       }
+      &:disabled {
+        cursor: not-allowed;
+        opacity: .5;
+      }
     }
     > div + div {
       border-top: 1px solid ${({ theme }) => theme['base-button']}
     } 
   }
-
+  > h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    color: ${({ theme }) => theme['base-subtitle']};
+    margin-bottom: .9rem;
+  }
+  > div {
+    background-color: ${({ theme }) => theme['base-card']};
+    padding: 2.5rem;
+  }
+  > div + div {
+    margin-top: .75rem;
+  }
 `
 
 export const InputGroup = styled.div`
@@ -88,38 +100,47 @@ export const AddressInputGroup = styled(InputGroup)`
   > div + div {
     margin-top: 1rem;
   }
-  select {
-    background-color: ${({ theme }) => theme['base-input']};
-    border: 1px solid ${({ theme }) => theme['base-button']};
-    padding: .75rem;
-    font-size: .875rem;
-  }
-  select.placeholder {
-    color: ${({ theme }) => theme['base-label']};
-  }
 `
 
-type Sizes = 'medium' | 'large'
+type Sizes = 'medium' | 'large' | 'small'
 
 interface InputProps {
   variant: Sizes
 }
 
 const VariantSize = {
-  medium: 0,
+  small: 0.2,
+  medium: 'none',
   large: 1,
 }
 
-export const Input = styled.input<InputProps>`
-  flex: ${({ variant }) => VariantSize[variant]};
-  background-color: ${({ theme }) => theme['base-input']};
-  border: 1px solid ${({ theme }) => theme['base-button']};
-  border-radius: .25rem;
-  padding: .75rem;
-  font-size: .875rem;
-  &::placeholder {
-    color: ${({ theme }) => theme['base-label']};
+export const Input = styled.div<InputProps>`
+  > input {
+    color: ${({ theme }) => theme['base-text']};
+    width: 100%;
+    background-color: ${({ theme }) => theme['base-input']};
+    border: 1px solid ${({ theme }) => theme['base-button']};
+    border-radius: .25rem;
+    padding: .75rem;
+    font-size: .875rem;
+    &::placeholder {
+      color: ${({ theme }) => theme['base-label']};
+    }
   }
+  &.invalid > input {
+    border: 1px solid red;
+  }
+  &.invalid {
+    display: flex;
+    flex-direction: column;
+  }
+  flex: ${({ variant }) => VariantSize[variant]};
+`
+
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: .875rem;
+  margin-top: .25rem;
 `
 
 export const PaymentInputGroup = styled(InputGroup)`
@@ -132,19 +153,24 @@ export const RadioButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: .75rem;
+
   > div {
     width: 100%;
     border: 1px solid ${({ theme }) => theme['base-button']};
     background-color: ${({ theme }) => theme['base-button']};
     border-radius: 6px;
+    
     &:hover {
       background-color: ${({ theme }) => theme['base-hover']};
     }
+
+    // Adicione este estilo para aplicar quando o input estiver selecionado
+    input:checked + label {
+      background-color: ${({ theme }) => theme['purple-light']};
+      border: 1px solid ${({ theme }) => theme.purple};
+    }
   }
-  > div:focus-within {
-    background-color: ${({ theme }) => theme['purple-light']};
-    border: 1px solid ${({ theme }) => theme.purple};
-  }
+
   > div > label {
     cursor: pointer;  
     padding: 1rem; 
@@ -155,10 +181,13 @@ export const RadioButtonsContainer = styled.div`
     line-height: 1.6;
     text-transform: uppercase;
     text-wrap: nowrap;
+    border-radius: 6px;
   }
+
   > div > label > svg {
     color: ${({ theme }) => theme.purple};
   }
+
   > div > input {
     position: absolute; 
     opacity: 0; 
