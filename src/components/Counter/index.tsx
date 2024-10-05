@@ -1,16 +1,22 @@
 import { CounterContainer } from './styles'
 import { Plus, Minus } from 'phosphor-react'
 
-export function Counter() {
+interface CounterProps {
+  quantity: number,
+  increment: () => void,
+  decrement: () => void,
+}
+
+export function Counter({ quantity, increment, decrement }: CounterProps) {
   return (
     <CounterContainer>
-      <button>
+      <button onClick={decrement}>
         <Minus size={14} weight="bold" />
       </button>
       <span>
-        1
+        {quantity}
       </span>
-      <button>
+      <button onClick={increment}>
         <Plus size={14} weight="bold" />
       </button>
     </CounterContainer>

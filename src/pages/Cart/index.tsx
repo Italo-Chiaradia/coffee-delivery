@@ -20,7 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 type FormInputs = {
-  cep: number,
+  cep: string,
   street: string,
   number: string,
   fullAddress: string,
@@ -51,6 +51,8 @@ export type OrderInfo = z.infer<typeof newOrder>
 const shippingPrice = 3.5
 
 export function Cart() {
+  const { cart, checkout } = useCart()
+
   const {
     register,
     handleSubmit,
@@ -63,11 +65,8 @@ export function Cart() {
     if (cart.length === 0) {
       return alert('É preciso ter pelo menos um item no carrinho')
     }
-    console.log(data)
-    /* checkout(data) */
+    checkout(data)
   }
-
-  const { cart } = useCart()
 
   const coffeesInCart = cart.map((item) => {
     const coffeeInfo = coffees.find(coffee => coffee.id === item.id)

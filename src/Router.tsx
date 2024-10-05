@@ -9,12 +9,11 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} /> {/* Use index para a rota raiz */}
         <Route path="/cart" element={<Cart />} />
-        <Route path="/success" element={<Success />} />
+        <Route path="/success/:id" element={<Success />} />
         <Route path="*" element={<Home />} />
       </Route>
-
     </Routes>
   )
 }

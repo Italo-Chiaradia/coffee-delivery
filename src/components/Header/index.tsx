@@ -2,8 +2,13 @@ import { HeaderContainer, Location, CartBtn } from './styles'
 import logoCoffeeDelivery from '../../assets/logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
 
 export function Header() {
+  const { cart } = useCart()
+  const cartLength = cart.reduce((accumulator, current) => {
+    return accumulator + current.quantity
+  }, 0)
   return (
     <HeaderContainer>
       <NavLink to="/" title="Página principal">
@@ -15,7 +20,7 @@ export function Header() {
           Porto Alegre, RS
         </Location>
         <NavLink to="/cart" title="Finalize seu pedido">
-          <CartBtn>
+          <CartBtn quantityCart={cartLength}>
             <ShoppingCart size={22} weight="fill" />
           </CartBtn>
         </NavLink>

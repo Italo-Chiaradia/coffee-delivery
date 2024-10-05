@@ -1,8 +1,20 @@
 import { SuccessContainer, DeliveryInfo } from './styles'
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 import DeliveryIllustration from '../../assets/delivery-illustration.png'
+import { useCart } from '../../context/CartContext'
+import { useParams } from 'react-router-dom'
 
 export function Success() {
+  const { orders } = useCart()
+  const { id } = useParams()
+  const orderInfo = orders.find((order) => order.id === Number(id))
+
+  const paymentMethod = {
+    credit: 'Cartão de crédito',
+    debit: 'Cartão de débito',
+    cash: 'Dinheiro',
+  }
+
   return (
     <SuccessContainer>
       <div>
@@ -14,9 +26,15 @@ export function Success() {
               <MapPin size={16} weight="fill" />
             </span>
             <span>
-              Entrega em {' '}
-              <strong>Rua João Daniel Martinelli, 102</strong> <br />
-              Farrapos - Porto Alegre, RS
+              <span>
+                Entrega em{' '}
+                <strong>
+                  {orderInfo?.street}, {orderInfo?.number}
+                </strong>
+              </span>
+              <span>
+                {orderInfo?.neighborhood} - {orderInfo?.city},{orderInfo?.state}
+              </span>
             </span>
           </DeliveryInfo>
           <DeliveryInfo variant="yellow">
@@ -34,7 +52,7 @@ export function Success() {
             </span>
             <span>
               Pagamento na entrega <br />
-              <strong>Cartão de crédito</strong>
+              <strong>{paymentMethod[orderInfo?.paymentMethod]}</strong>
             </span>
           </DeliveryInfo>
         </div>
